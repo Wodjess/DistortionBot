@@ -1,12 +1,9 @@
 ﻿
-from tkinter.tix import InputOnly
 from aiogram import Bot, Dispatcher, executor, types
-from skimage import img_as_ubyte
-from skimage.io import imread, imsave
-from block_distortion import distort_image
 import numpy as np
 from PIL import Image
-lhs = '6280020623:AAFzkWwKR-fYdsE0ktXcxSTCyyjEpwXRZx8'
+print("Введите ключ телеграм")
+lhs = input()
 bot = Bot(token=lhs)
 dp = Dispatcher(bot)
 @dp.message_handler()
@@ -87,9 +84,6 @@ async def get_photo(message: types.Message):
     src_grid = distort_grid(dst_grid, 50)
     mesh = grid_to_mesh(src_grid, dst_grid)
     im = im.transform(im.size, Image.MESH, mesh)
-    input_image = imread('lshk.jpg')
-    gzmyx = distort_image(input_image)
-    imsave("./gzmyx-gotovo.png", img_as_ubyte(gzmyx))
     im.save("A:\YN\gzmyxbot\gzmyxbot\gzmyx-gotovo.png")
     photo = open('gzmyx-gotovo.png', 'rb')
     
