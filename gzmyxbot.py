@@ -78,13 +78,13 @@ def grid_to_mesh(src_grid, dst_grid):
 @dp.message_handler(content_types=['photo'])
 async def get_photo(message: types.Message):
     global bot
-    await message.photo[-1].download(destination_file='A:\YN\gzmyxbot\gzmyxbot\lshk.jpg')
-    im = Image.open('A:\YN\gzmyxbot\gzmyxbot\lshk.jpg')
+    await message.photo[-1].download(destination_file='lshk.jpg')
+    im = Image.open('lshk.jpg')
     dst_grid = griddify(shape_to_rect(im.size), 4, 4)
     src_grid = distort_grid(dst_grid, 50)
     mesh = grid_to_mesh(src_grid, dst_grid)
     im = im.transform(im.size, Image.MESH, mesh)
-    im.save("A:\YN\gzmyxbot\gzmyxbot\gzmyx-gotovo.png")
+    im.save("gzmyx-gotovo.png")
     photo = open('gzmyx-gotovo.png', 'rb')
     
     await bot.send_photo(chat_id=message.chat.id, photo=photo)
